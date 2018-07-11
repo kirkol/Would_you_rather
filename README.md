@@ -1,3 +1,9 @@
+// This is a project for React-Redux course
+// If you'd like to find some tip or you'd like to see
+// how does basic React-Redux app look like - here you are
+
+// tl dr below
+
 # Would You Rather Project
 
 This is the starter code for the final assessment project for Udacity's React & Redux course.
