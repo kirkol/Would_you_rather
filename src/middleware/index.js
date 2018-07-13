@@ -16,5 +16,6 @@ import {applyMiddleware} from 'redux'
 //aż wszystkie akcje będą obiektami - te przekaże do kolejnych middleware’ów.
 
 export default applyMiddleware(
-  thunk
+  thunk,
+  logger
 )

@@ -1,5 +1,6 @@
 import {receiveUsers} from '../actions/users'
 import {receiveQuestions} from '../actions/questions'
+import {setAuthedUser} from '../actions/authedUser'
 
 //gdy user zaloguje sie juz na stronce,
 //to wywoluje sie handleInitialData, ktora tak naprawde wywoluje funkcje getInitialData
@@ -27,6 +28,7 @@ export function handleInitialData(){
       .then(({users, questions}) => {
         dispatch(receiveUsers(users))
         dispatch(receiveQuestions(questions))
+        dispatch(setAuthedUser(AUTHED_ID))
       })
   }
 }
