@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
-import {handleInitialData} from '../actions/shared'
-import {connect} from 'react-redux'
+import { handleInitialData } from '../actions/shared'
+import { connect } from 'react-redux'
 import Navi from './Navi'
 import SignIn from './SignIn'
+import Home from './Home'
 
 class App extends Component {
 
-  componentDidMount(){
+  componentDidMount() {
     this.props.dispatch(handleInitialData())
   }
 
   render() {
     return (
-      <div>
-        <Navi />
-        <SignIn />
-      </div>
+        <div>
+          <Navi />
+          <Home />
+        </div>
     );
   }
 }

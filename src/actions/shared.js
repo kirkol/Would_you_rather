@@ -20,7 +20,7 @@ import { getInitialData } from '../utils/api.js';
 //i temu glownemu reducerowi wysyla akcje. Glowny reducer tak naprawde wysle akcje wszystkim reducerom, kazdy reducer sprawdzi sobie po nazwie akcji,
 //czy cos trzeba zrobic, ale tylko jeden zrobi robote
 
-const AUTHED_ID = 'tylermcginnis'
+const AUTHED_ID = ''
 
 export function handleInitialData(){
   return (dispatch) => {
