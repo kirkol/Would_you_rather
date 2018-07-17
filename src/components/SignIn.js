@@ -15,6 +15,10 @@ class SignIn extends Component {
     const { dispatch, authedUser } = this.props
     if (opt) {
       dispatch(setAuthedUser(opt))
+      localStorage['my_user'] = opt
+      this.props.history.push("/home")
+    }else{
+      alert("First, you need to choose your user :)")
     }
   }
 

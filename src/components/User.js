@@ -12,7 +12,7 @@ class User extends Component {
               <Avatar size="100px" name="Kuba" round={true} src="https://78.media.tumblr.com/f1668a64e65680ca53c7f35c60bd8d7d/tumblr_inline_ofbdxfOZKL1s1qdgg_540.jpg" />
             </Col>
             <Col xs="5" style={{ borderLeft: 'thin solid #d9d9d9' }}>
-              <CardTitle><h3>USER NAME</h3></CardTitle>
+              <CardTitle><b>USER NAME</b></CardTitle>
               <CardText>ANSWERED: 10</CardText>
               <CardText>CREATED: 18</CardText>
             </Col>

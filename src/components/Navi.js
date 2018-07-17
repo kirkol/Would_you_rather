@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import {withRouter} from 'react-router-dom'
 import Avatar from 'react-avatar'
 import {
   Navbar,
@@ -17,6 +18,7 @@ class Navi extends Component {
     e.preventDefault()
     const { dispatch } = this.props
     dispatch(setAuthedUser(null))
+    this.props.history.push("/")
   }
 
   render() {
@@ -26,7 +28,7 @@ class Navi extends Component {
         {this.props.userOnline ?
           (<Navbar color="dark" light expand="sm">
             <div>
-              <NavbarBrand href="/">Home</NavbarBrand>
+              <NavbarBrand href="/home">Home</NavbarBrand>
               <NavbarBrand href="/new">New Question</NavbarBrand>
               <NavbarBrand href="/userboard">Users Board</NavbarBrand>
             </div>
@@ -47,7 +49,6 @@ class Navi extends Component {
             <NavbarBrand href="/userboard">Users Board</NavbarBrand>
           </Navbar>)
         }
-
       </div>
     )
   }
@@ -64,4 +65,4 @@ function mapStateToProps({ authedUser }) {
   }
 }
 
-export default connect(mapStateToProps)(Navi)
+export default withRouter(connect(mapStateToProps)(Navi))
