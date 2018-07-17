@@ -21,14 +21,14 @@ class Navi extends Component {
     this.props.history.push("/")
   }
 
-  render() {
+  render() { 
     return (
       <div className="fixed-top navbar-dark bg-dark">
 
         {this.props.userOnline ?
           (<Navbar color="dark" light expand="sm">
             <div>
-              <NavbarBrand href="/home">Home</NavbarBrand>
+              <NavbarBrand href="/">Home</NavbarBrand>
               <NavbarBrand href="/new">New Question</NavbarBrand>
               <NavbarBrand href="/userboard">Users Board</NavbarBrand>
             </div>

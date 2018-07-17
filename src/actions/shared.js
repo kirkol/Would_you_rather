@@ -20,15 +20,12 @@ import { getInitialData } from '../utils/api.js';
 //i temu glownemu reducerowi wysyla akcje. Glowny reducer tak naprawde wysle akcje wszystkim reducerom, kazdy reducer sprawdzi sobie po nazwie akcji,
 //czy cos trzeba zrobic, ale tylko jeden zrobi robote
 
-const AUTHED_ID = null
-
 export function handleInitialData(){
   return (dispatch) => {
     return getInitialData()
       .then(({users, questions}) => {
         dispatch(receiveUsers(users))
         dispatch(receiveQuestions(questions))
-        dispatch(setAuthedUser(AUTHED_ID))
       })
   }
 }

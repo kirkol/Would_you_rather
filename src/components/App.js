@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Navi from './Navi'
 import SignIn from './SignIn'
 import Home from './Home'
-import Question from './Question'
 import UsersBoard from './UsersBoard'
 import NewQuestion from './NewQuestion'
 import {
@@ -14,27 +13,35 @@ import {
 
 class App extends Component {
 
-  componentDidMount() {
-    console.log("O DUPA DUPA DUPA!")
+  componentWillMount() {
     this.props.dispatch(handleInitialData())
   }
 
   render() {
-    console.log("STORAGE W APIE", localStorage['my_user'])
+    {console.log("USER W APP", this.props)}
     return (
       <Router>
         <Fragment>
           <Navi />
-          <Fragment>
-            <Route path='/' exact component={SignIn} />
+          {this.props.authedUser?
+          (<Fragment>
             <Row>
               <Col sm="12" md={{ size: 6, offset: 3 }}>
-                <Route path='/home' component={Home} />
+                <Route path='/' exact component={Home} />
                 <Route path='/userboard' component={UsersBoard} />
                 <Route path='/new' component={NewQuestion} />
               </Col>
             </Row>
-          </Fragment>
+          </Fragment>)
+          :
+          (<Fragment>
+            <Route path='/' exact component={SignIn} />
+            <Row>
+              <Col sm="12" md={{ size: 6, offset: 3 }}>
+                <Route path='/userboard' component={UsersBoard} />
+              </Col>
+            </Row>
+          </Fragment>)}
         </Fragment>
       </Router>
     );
