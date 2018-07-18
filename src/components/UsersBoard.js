@@ -10,7 +10,6 @@ class UsersBoard extends Component {
                       (Object.keys(users[b].answers).length + users[b].questions.length) 
                       - 
                       (Object.keys(users[a].answers).length + users[a].questions.length))
-    console.log("RANK", usersIdRank)
     return (
       <div style={{marginTop:'15px'}}>
       {usersIdRank.map((id) => (

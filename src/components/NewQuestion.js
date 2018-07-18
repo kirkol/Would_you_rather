@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Form, FormGroup, Label, Input, Button} from 'reactstrap'
+import {Form, FormGroup, Input, Button} from 'reactstrap'
 
 class NewQuestion extends Component {
   render() {

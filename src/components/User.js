@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-import { Card, CardTitle, Col, Row, CardText, Button } from 'reactstrap'
+import { Card, CardTitle, Col, Row, CardText} from 'reactstrap'
 import Avatar from 'react-avatar'
 
 class User extends Component {
 
   render() {
-    {console.log("PROPSY W USERZE",this.props)}
     const {user} = this.props
     return (
       <div>

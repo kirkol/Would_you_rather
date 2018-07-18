@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import Avatar from 'react-avatar'
+import { Link } from 'react-router-dom'
+
 import {
   Navbar,
   NavbarBrand,
@@ -21,23 +23,24 @@ class Navi extends Component {
     this.props.history.push("/")
   }
 
-  render() { 
+  render() {
+    const {users, userId} = this.props
     return (
       <div className="fixed-top navbar-dark bg-dark">
 
-        {this.props.userOnline ?
+        {this.props.userId ?
           (<Navbar color="dark" light expand="sm">
             <div>
-              <NavbarBrand href="/">Home</NavbarBrand>
-              <NavbarBrand href="/new">New Question</NavbarBrand>
-              <NavbarBrand href="/userboard">Users Board</NavbarBrand>
+              <NavbarBrand tag={Link} to={"/"}>Home</NavbarBrand>
+              <NavbarBrand tag={Link} to={"/new"}>New Question</NavbarBrand>
+              <NavbarBrand tag={Link} to={"/userboard"}>Users Board</NavbarBrand>
             </div>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <Avatar name="Kuba" size="40" round={true} src="https://78.media.tumblr.com/f1668a64e65680ca53c7f35c60bd8d7d/tumblr_inline_ofbdxfOZKL1s1qdgg_540.jpg" />
+                <Avatar name="Kuba" size="40" round={true} src={users[userId].avatarURL}/>
               </NavItem>
               <NavItem>
-                <NavLink disabled>Hello {this.props.userOnline}</NavLink>
+                <NavLink disabled>Hello {users[userId].name}</NavLink>
               </NavItem>
               <NavItem>
                 <Button onClick={(e) => { this.handleLogout(e) }}>Logout</Button>
@@ -46,7 +49,8 @@ class Navi extends Component {
           </Navbar>)
           :
           (<Navbar color="dark" light expand="sm">
-            <NavbarBrand href="/userboard">Users Board</NavbarBrand>
+            <NavbarBrand tag={Link} to={"/"}>Home</NavbarBrand>
+            <NavbarBrand tag={Link} to={"/userboard"}>Users Board</NavbarBrand>
           </Navbar>)
         }
       </div>
@@ -59,9 +63,10 @@ class Navi extends Component {
 // jesli wystapi akcja, ktora zmieni authedUser w glownym Storze, to kopniety w dupsko zostanie tez
 // komponent Navi - nastapi jego przerenderowanie (jak po setState)
 
-function mapStateToProps({ authedUser }) {
+function mapStateToProps({ authedUser, users }) {
   return {
-    userOnline: authedUser
+    users,
+    userId: authedUser
   }
 }
 

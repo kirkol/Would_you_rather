@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 
-class QuestionsAnswered extends Component{
+class QuestionsUnanswered extends Component{
   render(){
     return(
       <div>
@@ -13,10 +13,10 @@ class QuestionsAnswered extends Component{
           <Link to="/questions-answered" className="nav-link" style={{ textDecoration: 'none', color: '#595959' }}>Answered questions</Link>
         </li>
       </ul>
-      QuestionsAnswered
+      QuestionsUnanswered
     </div>
     )
   }
 }
 
-export default QuestionsAnswered
+export default QuestionsUnanswered

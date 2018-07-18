@@ -11,8 +11,7 @@ class SignIn extends Component {
 
   handleSignIn = (e) => {
     e.preventDefault();
-
-    const { dispatch, authedUser } = this.props
+    const { dispatch } = this.props
     if (opt) {
       dispatch(setAuthedUser(opt))
       this.props.history.push("/")
@@ -22,7 +21,7 @@ class SignIn extends Component {
   }
 
   render() {
-    const { authedUser, usersList, dispatch } = this.props
+    const { usersList } = this.props
     return (
       <Container>
         <Row>
@@ -36,7 +35,7 @@ class SignIn extends Component {
                   <Input type="select" name="select" id="exampleSelect" defaultValue="" onChange={(event) => { opt = event.target.value }}>
                     <option disabled value=""> -- choose your user -- </option>
                     {Object.keys(usersList).map((u) => (
-                      <option key={u}>
+                      <option key={u} value={usersList[u].id}>
                         {usersList[u].name}
                       </option>
                     ))
