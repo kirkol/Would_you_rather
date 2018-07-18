@@ -8,8 +8,8 @@ import SignIn from './SignIn'
 import Home from './Home'
 import UsersBoard from './UsersBoard'
 import NewQuestion from './NewQuestion'
-import QuestionsAnswered from './QuestionsAnswered';
-import QuestionsUnanswered from './QuestionsUnanswered';
+import Question from './Question'
+import Result from './Result'
 import {
   Row, Col
 } from 'reactstrap'
@@ -34,8 +34,16 @@ class App extends Component {
                     <Route path='/' exact component={Home} />
                     <Route path='/userboard' component={UsersBoard} />
                     <Route path='/new' component={NewQuestion} />
-                    <Route path='/questions-unanswered' component={QuestionsUnanswered} />
-                    <Route path='/questions-answered' component={QuestionsAnswered} />
+                    <Route path='/question/:id' render={() => (
+                      <Question
+                        id={(window.location.href).split("/").pop()}
+                      />
+                    )} />
+                    <Route path='/result/:id' render={() => (
+                      <Result
+                        id={(window.location.href).split("/").pop()}
+                      />
+                    )} />
                   </Col>
                 </Row>
               </Fragment>)

@@ -1,20 +1,46 @@
 import React, { Component } from 'react'
-import {Link} from 'react-router-dom'
+import QuestionsUnanswered from './QuestionsUnanswered';
+import QuestionsAnswered from './QuestionsAnswered';
 
 class Home extends Component {
+
+  state = {
+    tab: "unanswered"
+  }
+
+  handleClick = (tabName) => {
+    this.setState(() => ({
+      tab: tabName
+    }))
+  }
+
   render() {
     return (
-      <div>
+      //ZMIENIC PONIZEJ NA UNANSWERED!!!
+      this.state.tab === "unanswered" ? 
+      (<div>
         <ul className="nav nav-tabs">
           <li className="nav-item">
-            <Link to="/questions-unanswered" className="nav-link active" style={{ textDecoration: 'none', color: '#595959' }}>Unanswered questions</Link>
+            <p onClick={(e) => this.handleClick("unanswered")} className="nav-link active" style={{ scolor: '#595959' }}>Unanswered questions</p>
           </li>
           <li className="nav-item">
-            <Link to="/questions-answered" className="nav-link" style={{ textDecoration: 'none', color: '#595959' }}>Answered questions</Link>
+            <p onClick={(e) => this.handleClick("answered")} className="nav-link" style={{ color: '#595959' }}>Answered questions</p>
           </li>
         </ul>
-        HOME, SWEET HOME
-      </div>
+       <QuestionsUnanswered/>
+      </div>)
+      :
+      (<div>
+        <ul className="nav nav-tabs">
+          <li className="nav-item">
+            <p onClick={(e) => this.handleClick("unanswered")} className="nav-link" style={{ scolor: '#595959' }}>Unanswered questions</p>
+          </li>
+          <li className="nav-item">
+            <p onClick={(e) => this.handleClick("answered")} className="nav-link active" style={{ color: '#595959' }}>Answered questions</p>
+          </li>
+        </ul>
+        <QuestionsAnswered/>
+      </div>)
     )
   }
 }

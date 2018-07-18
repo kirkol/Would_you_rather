@@ -9,6 +9,9 @@ import {receiveQuestions} from '../actions/questions'
 //zwroci obiekt z userami i obiekt z pytaniami.
 import { getInitialData } from '../utils/api.js';
 
+//NA CHWILE
+import {setAuthedUser} from '../actions/authedUser'
+
 //DISPATCH TO FUNKCJA, KTORA KOPIE W DUPE ODPOWIEDNIEGO REDUCERA
 //i przechodzi tez po wszystkich listenerach (funkcjach subskrybowanych) i je wywoluje
 //ten zapis (dispatch) stosujemy po to, zeby przeslac funkcje dispatch nizej, to funkcji, ktore wykonuje sie ponizej
@@ -25,6 +28,8 @@ export function handleInitialData(){
       .then(({users, questions}) => {
         dispatch(receiveUsers(users))
         dispatch(receiveQuestions(questions))
+        //NA CHWILE
+        dispatch(setAuthedUser("johndoe"))
       })
   }
 }

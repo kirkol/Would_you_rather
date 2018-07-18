@@ -1,22 +1,44 @@
-import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
+import React, { Component } from 'react'
+import QuestionPreview from './QuestionPreview';
+import {connect} from 'react-redux'
 
-class QuestionsAnswered extends Component{
-  render(){
-    return(
+class QuestionsAnswered extends Component {
+  
+  render() {
+
+    const {user, questions, users} = this.props
+    //find answered questions
+    const arrayOfUsersAnsweredQuestions = Object.keys(user.answers)
+    const questionsAnsweredByUser = Object.keys(questions)
+      .filter(key => arrayOfUsersAnsweredQuestions.includes(key))
+      .reduce((obj, key) => {
+        obj[key] = questions[key];
+        return obj
+      }, {})
+
+    console.log("PYTANIA ODPOWIEDZIANE",questionsAnsweredByUser)
+
+    return (
       <div>
-      <ul className="nav nav-tabs">
-        <li className="nav-item">
-          <Link to="/questions-unanswered" className="nav-link active" style={{ textDecoration: 'none', color: '#595959' }}>Unanswered questions</Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/questions-answered" className="nav-link" style={{ textDecoration: 'none', color: '#595959' }}>Answered questions</Link>
-        </li>
-      </ul>
-      QuestionsAnswered
-    </div>
+        {Object.keys(questionsAnsweredByUser).map((q => (
+          <QuestionPreview 
+          key={q} 
+          question={questionsAnsweredByUser[q]}
+          user={users[questionsAnsweredByUser[q].author].name}
+          avatar={users[questionsAnsweredByUser[q].author].avatarURL}
+          view={"result"}/>
+        )))}
+      </div>
     )
   }
 }
 
-export default QuestionsAnswered
+function mapStateToProps({questions, authedUser, users}){
+  return{
+    user: users[authedUser],
+    users,
+    questions
+  }
+}
+
+export default connect(mapStateToProps)(QuestionsAnswered)
