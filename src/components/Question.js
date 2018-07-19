@@ -4,8 +4,15 @@ import {
 } from 'reactstrap'
 import Avatar from 'react-avatar'
 import { connect } from 'react-redux'
+import {withRouter} from 'react-router-dom'
 
 class Question extends Component {
+
+  handleClick = (e) => {
+    e.preventDefault();
+    this.props.history.push(`/result/${this.props.id}`)
+  }
+
   render() {
     const {question, user} = this.props
     {console.log("QUESTIONS PROPS", this.props)}
@@ -37,7 +44,7 @@ class Question extends Component {
                     </FormGroup>
                   </FormGroup>
                   <hr />
-                  <Button style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto', width: '90%' }}>Submit</Button>
+                  <Button onClick={(e) => {this.handleClick(e)}} style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto', width: '90%' }}>Submit</Button>
                 </Form>
               </Row>
             </Col>
@@ -55,4 +62,4 @@ function mapStateToProps({questions, users}, {id}){
   }
 }
 
-export default connect(mapStateToProps)(Question)
+export default withRouter(connect(mapStateToProps)(Question))

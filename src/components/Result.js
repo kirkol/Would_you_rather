@@ -8,9 +8,11 @@ import { connect } from 'react-redux'
 class Result extends Component {
   render() {
     console.log("RESULTS PROPS", this.props)
-    const {user, question} = this.props
+    const { user, question, authedUser } = this.props
     const votes1 = question.optionOne["votes"].length
     const votes2 = question.optionTwo["votes"].length
+
+    const isUserChoose = question.optionOne["votes"].includes(authedUser)
 
     return (
       <div>
@@ -23,18 +25,18 @@ class Result extends Component {
             </Col>
             <Col xs="9" style={{ borderLeft: 'thin solid #d9d9d9' }}>
               <CardText><b>Results:</b></CardText>
-              <div style={{ border: 'thin solid #d9d9d9', borderRadius:'35px', padding:'20px' }}>
-              <p>{question.optionOne["text"]}</p>
-              <div className="text-center">{100*votes1/(votes1+votes2)}%</div>
-              <Progress value={100*votes1/(votes1+votes2)} color="info" />
-              <p style={{textAlign: 'center'}}>{votes1 + "/" + (votes1+votes2)}</p>
+              <div style={{ border: isUserChoose ? ('thick solid #17a2b8'):('thin solid #d9d9d9'), borderRadius: '35px', padding: '20px' }}>
+                <p>{question.optionOne["text"]}</p>
+                <div className="text-center">{100 * votes1 / (votes1 + votes2)}%</div>
+                <Progress value={100 * votes1 / (votes1 + votes2)} color="info" />
+                <p style={{ textAlign: 'center' }}>{votes1 + "/" + (votes1 + votes2)}</p>
               </div>
               <br />
-              <div style={{ border: 'thin solid #d9d9d9', borderRadius:'35px', padding:'20px' }}>
-              <p>{question.optionTwo["text"]}</p>
-              <div className="text-center">{100*votes2/(votes1+votes2)}%</div>
-              <Progress value={100*votes2/(votes1+votes2)} color="info" />
-              <p style={{textAlign: 'center'}}>{votes2 + "/" + (votes1+votes2)}</p>
+              <div style={{ border: !isUserChoose ? ('thick solid #17a2b8'):('thin solid #d9d9d9'), borderRadius: '35px', padding: '20px' }}>
+                <p>{question.optionTwo["text"]}</p>
+                <div className="text-center">{100 * votes2 / (votes1 + votes2)}%</div>
+                <Progress value={100 * votes2 / (votes1 + votes2)} color="info" />
+                <p style={{ textAlign: 'center' }}>{votes2 + "/" + (votes1 + votes2)}</p>
               </div>
               <hr />
               <Button style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto', width: '90%' }}>BACK</Button>
@@ -46,8 +48,9 @@ class Result extends Component {
   }
 }
 
-function mapStateToProps({questions, users}, {id}){
-  return{
+function mapStateToProps({ questions, users, authedUser }, { id }) {
+  return {
+    authedUser,
     question: questions[id],
     user: users[questions[id].author]
   }
