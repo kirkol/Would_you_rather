@@ -17,7 +17,6 @@ class QuestionPreview extends Component {
   }
 
   render() {
-    console.log(this.props)
     const {question, view, user, avatar} = this.props
     return (
       <div>

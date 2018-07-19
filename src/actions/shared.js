@@ -28,8 +28,6 @@ export function handleInitialData(){
       .then(({users, questions}) => {
         dispatch(receiveUsers(users))
         dispatch(receiveQuestions(questions))
-        //NA CHWILE
-        dispatch(setAuthedUser("johndoe"))
       })
   }
 }

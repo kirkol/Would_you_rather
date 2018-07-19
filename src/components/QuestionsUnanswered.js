@@ -15,8 +15,6 @@ class QuestionsUnanswered extends Component {
         return obj
       }, {})
 
-    console.log("PYTANIA NIEODPOWIEDZIANE", questionsUnansweredByUser)
-
     return (
       <div>
         {Object.keys(questionsUnansweredByUser).map((q => (

@@ -14,7 +14,9 @@
 //let hot = ['c', 'd']
 //let all = [...cold, ...hot] -> ['a', 'b', 'c', 'd']
 
-import {RECEIVE_USERS} from '../actions/users'
+//UWAGA: w reducerze "state" oznacza tylko FRAGMENT store'a Reduxowego (tu: tylko users), nie caly Store!
+
+import {RECEIVE_USERS, USER_UPDATE, USER_UPDATE2} from '../actions/users'
 
 export default function users (state = {}, action){
   switch(action.type){
@@ -23,6 +25,26 @@ export default function users (state = {}, action){
         ...state,
         ...action.users
       }
+    case USER_UPDATE: // it predicts API update 
+      return {
+        ...state,
+        [action.q["author"]]: {
+          ...state[action.q["author"]],
+          questions: state[action.q["author"]].questions.concat(action.q["id"])
+        }
+      }
+    case USER_UPDATE2:
+      return{
+        ...state,
+        [action.authedUser]: {
+          ...state[action.authedUser],
+          answers: {
+            ...state[action.authedUser].answers,
+            [action.qid]:action.answer
+          }
+        }
+      }
+      
     default:
       return state
   }

@@ -16,8 +16,6 @@ class QuestionsAnswered extends Component {
         return obj
       }, {})
 
-    console.log("PYTANIA ODPOWIEDZIANE",questionsAnsweredByUser)
-
     return (
       <div>
         {Object.keys(questionsAnsweredByUser).map((q => (

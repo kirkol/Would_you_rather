@@ -4,10 +4,15 @@ import {
 } from 'reactstrap'
 import Avatar from 'react-avatar'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 class Result extends Component {
+  handleClick = (e) => {
+    e.preventDefault()
+    this.props.history.push("/")
+  }
+
   render() {
-    console.log("RESULTS PROPS", this.props)
     const { user, question, authedUser } = this.props
     const votes1 = question.optionOne["votes"].length
     const votes2 = question.optionTwo["votes"].length
@@ -39,7 +44,9 @@ class Result extends Component {
                 <p style={{ textAlign: 'center' }}>{votes2 + "/" + (votes1 + votes2)}</p>
               </div>
               <hr />
-              <Button style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto', width: '90%' }}>BACK</Button>
+              <Button 
+              onClick={(e) => this.handleClick(e)} 
+              style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto', width: '90%' }}>BACK</Button>
             </Col>
           </Row>
         </Card>
@@ -56,4 +63,4 @@ function mapStateToProps({ questions, users, authedUser }, { id }) {
   }
 }
 
-export default connect(mapStateToProps)(Result)
+export default withRouter(connect(mapStateToProps)(Result))

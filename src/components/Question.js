@@ -4,18 +4,26 @@ import {
 } from 'reactstrap'
 import Avatar from 'react-avatar'
 import { connect } from 'react-redux'
-import {withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
+import {handleAnswerQuestion} from '../actions/questions'
 
 class Question extends Component {
 
-  handleClick = (e) => {
+  handleClick = (e, answer) => {
     e.preventDefault();
-    this.props.history.push(`/result/${this.props.id}`)
+    const {authedUser, question} = this.props
+
+    if(answer == false){
+      alert("You have to choose your answer first :)")
+    }else{
+      this.props.dispatch(handleAnswerQuestion({authedUser:authedUser, qid:question.id, answer:answer}))
+      this.props.history.push(`/result/${this.props.id}`)
+    }
   }
 
   render() {
-    const {question, user} = this.props
-    {console.log("QUESTIONS PROPS", this.props)}
+    const { question, user } = this.props
+    let answer = ""
     return (
       <div>
         <Card body>
@@ -32,19 +40,23 @@ class Question extends Component {
                   <FormGroup tag="fieldset">
                     <FormGroup check>
                       <Label check>
-                        <Input type="radio" name="radio1" />{' '}
+                        <Input onChange={(e) => answer="optionOne"} type="radio" name="radio1" />{' '}
                         {question.optionOne["text"]}
                       </Label>
                     </FormGroup>
                     <FormGroup check>
                       <Label check>
-                        <Input type="radio" name="radio1" />{' '}
+                        <Input onChange={(e) => answer="optionTwo"} type="radio" name="radio1" />{' '}
                         {question.optionTwo["text"]}
                       </Label>
                     </FormGroup>
                   </FormGroup>
                   <hr />
-                  <Button onClick={(e) => {this.handleClick(e)}} style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto', width: '90%' }}>Submit</Button>
+                  <Button
+                    onClick={(e) => { this.handleClick(e, answer) }}
+                    style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto', width: '90%' }}>
+                    Submit
+                  </Button>
                 </Form>
               </Row>
             </Col>
@@ -55,8 +67,9 @@ class Question extends Component {
   }
 }
 
-function mapStateToProps({questions, users}, {id}){
-  return{
+function mapStateToProps({ questions, users, authedUser }, { id }) {
+  return {
+    authedUser,
     question: questions[id],
     user: users[questions[id].author]
   }

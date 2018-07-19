@@ -12,14 +12,12 @@ class NewQuestion extends Component {
       optionOneText: opt1,
       optionTwoText: opt2
     }
-    console.log("QUESTION:", question)
     if(opt1==false || opt2==false){
       alert("both options need to be filled :)")
     }else{
-      console.log("OK")
+      this.props.dispatch(handleAddQuestion(question))
+      this.props.history.push("/")
     }
-    this.props.dispatch(handleAddQuestion(question))
-    this.props.history.push("/")
   }
 
   render() {
