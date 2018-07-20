@@ -50,7 +50,6 @@ class Navi extends Component {
           :
           (<Navbar color="dark" light expand="sm">
             <NavbarBrand tag={Link} to={"/"}>Home</NavbarBrand>
-            <NavbarBrand tag={Link} to={"/userboard"}>Users Board</NavbarBrand>
           </Navbar>)
         }
       </div>

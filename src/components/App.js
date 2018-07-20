@@ -22,12 +22,15 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <Router>
         <Fragment>
           <LoadingBar />
-            <Navi />
-            {this.props.authedUser?
+          <Navi />
+          {this.props.loading == false
+            ?
+            (this.props.authedUser ?
               (<Fragment>
                 <Row>
                   <Col sm="12" md={{ size: 6, offset: 3 }}>
@@ -49,13 +52,11 @@ class App extends Component {
               </Fragment>)
               :
               (<Fragment>
-                <Route path='/' exact component={SignIn} />
-                <Row>
-                  <Col sm="12" md={{ size: 6, offset: 3 }}>
-                    <Route path='/userboard' component={UsersBoard} />
-                  </Col>
-                </Row>
-              </Fragment>)}
+                <Route path='/' component={SignIn} />
+              </Fragment>))
+            :
+            ("")
+          }
         </Fragment>
       </Router>
     );
@@ -67,9 +68,10 @@ class App extends Component {
 // jesli wystapi akcja, ktora zmieni authedUser w glownym Storze, to kopniety w dupsko zostanie tez
 // komponent App - nastapi jego przerenderowanie (jak po setState)
 
-function mapStateToProps({ authedUser }) {
+function mapStateToProps({ authedUser, loadingBar }) {
   return {
     authedUser,
+    loading: loadingBar.default
   }
 }
 

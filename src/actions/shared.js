@@ -1,5 +1,7 @@
 import {receiveUsers} from '../actions/users'
 import {receiveQuestions} from '../actions/questions'
+//do loadingu
+import {showLoading, hideLoading} from 'react-redux-loading'
 
 //gdy user zaloguje sie juz na stronce,
 //to wywoluje sie handleInitialData, ktora tak naprawde wywoluje funkcje getInitialData
@@ -8,9 +10,6 @@ import {receiveQuestions} from '../actions/questions'
 //kazdy z tych Promisow, jezeli uda sie polaczyc z baza (tu musi, bo tak naprawde nie ma zadnej bazy, tylko jest plik z danymi xD)
 //zwroci obiekt z userami i obiekt z pytaniami.
 import { getInitialData } from '../utils/api.js';
-
-//NA CHWILE
-import {setAuthedUser} from '../actions/authedUser'
 
 //DISPATCH TO FUNKCJA, KTORA KOPIE W DUPE ODPOWIEDNIEGO REDUCERA
 //i przechodzi tez po wszystkich listenerach (funkcjach subskrybowanych) i je wywoluje
@@ -24,10 +23,12 @@ import {setAuthedUser} from '../actions/authedUser'
 
 export function handleInitialData(){
   return (dispatch) => {
+    dispatch(showLoading())
     return getInitialData()
       .then(({users, questions}) => {
         dispatch(receiveUsers(users))
         dispatch(receiveQuestions(questions))
+        dispatch(hideLoading())
       })
   }
 }

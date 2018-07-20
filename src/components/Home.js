@@ -16,7 +16,6 @@ class Home extends Component {
 
   render() {
     return (
-      //ZMIENIC PONIZEJ NA UNANSWERED!!!
       this.state.tab === "unanswered" ? 
       (<div>
         <ul className="nav nav-tabs">
