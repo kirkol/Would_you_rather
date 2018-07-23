@@ -4,6 +4,7 @@ import {
 } from 'reactstrap'
 import {withRouter} from 'react-router-dom'
 import Avatar from 'react-avatar'
+import {connect} from 'react-redux'
 
 class QuestionPreview extends Component {
 
@@ -17,15 +18,15 @@ class QuestionPreview extends Component {
   }
 
   render() {
-    const {question, view, user, avatar} = this.props
+    const {question, users} = this.props
     return (
       <div>
         <Card body>
-          <CardTitle>{user} asks</CardTitle>
+          <CardTitle>{users[question.author].name} asks</CardTitle>
           <hr />
           <Row>
             <Col xs="2" style={{display: 'block', marginLeft: '10px', paddingRight: '120px', width: '100%'}}>
-            <Avatar size="100px" name="Kuba" round={true} src={avatar} />
+            <Avatar size="100px" name="Kuba" round={true} src={users[question.author].avatarURL} />
             </Col>
             <Col xs="8" style={{borderLeft:'thin solid #d9d9d9'}}>
               <CardText><b>WOULD YOU RATHER:</b></CardText>
@@ -50,4 +51,11 @@ class QuestionPreview extends Component {
   }
 }
 
-export default withRouter(QuestionPreview)
+function mapStateToProps({questions, users}, {id}){
+  return{
+    question: questions[id],
+    users
+  }
+}
+
+export default withRouter(connect(mapStateToProps)(QuestionPreview))
