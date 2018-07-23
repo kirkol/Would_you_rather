@@ -20,11 +20,12 @@ class Navi extends Component {
     e.preventDefault()
     const { dispatch } = this.props
     dispatch(setAuthedUser(null))
+    
     this.props.history.push("/")
   }
 
   render() {
-    const {users, userId} = this.props
+    const { users, userId } = this.props
     return (
       <div className="fixed-top navbar-dark bg-dark">
 
@@ -32,12 +33,12 @@ class Navi extends Component {
           (<Navbar color="dark" light expand="sm">
             <div>
               <NavbarBrand tag={Link} to={"/"}>Home</NavbarBrand>
-              <NavbarBrand tag={Link} to={"/new"}>New Question</NavbarBrand>
-              <NavbarBrand tag={Link} to={"/userboard"}>Users Board</NavbarBrand>
+              <NavbarBrand tag={Link} to={"/add"}>New Question</NavbarBrand>
+              <NavbarBrand tag={Link} to={"/leaderboard"}>Users Board</NavbarBrand>
             </div>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <Avatar name="Kuba" size="40" round={true} src={users[userId].avatarURL}/>
+                <Avatar name="Kuba" size="40" round={true} src={users[userId].avatarURL} />
               </NavItem>
               <NavItem>
                 <NavLink disabled>Hello {users[userId].name}</NavLink>

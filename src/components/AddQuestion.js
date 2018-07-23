@@ -3,7 +3,7 @@ import {Form, FormGroup, Input, Button} from 'reactstrap'
 import {connect} from 'react-redux'
 import { handleAddQuestion } from '../actions/questions';
 
-class NewQuestion extends Component {
+class AddQuestion extends Component {
 
   handleClick = (e, opt1, opt2) => {
     e.preventDefault
@@ -49,4 +49,4 @@ function mapStateToProps({authedUser}){
   }
 }
 
-export default connect(mapStateToProps)(NewQuestion)
+export default connect(mapStateToProps)(AddQuestion)

@@ -1,15 +1,16 @@
 import React, { Component, Fragment } from 'react';
 import { handleInitialData } from '../actions/shared'
 import { connect } from 'react-redux'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import LoadingBar from 'react-redux-loading'
 import Navi from './Navi'
 import SignIn from './SignIn'
 import Home from './Home'
-import UsersBoard from './UsersBoard'
-import NewQuestion from './NewQuestion'
+import LeaderBoard from './LeaderBoard'
+import AddQuestion from './AddQuestion'
 import Question from './Question'
 import Result from './Result'
+import NoPage404 from './NoPage404'
 import {
   Row, Col
 } from 'reactstrap'
@@ -34,25 +35,28 @@ class App extends Component {
               (<Fragment>
                 <Row>
                   <Col sm="12" md={{ size: 6, offset: 3 }}>
-                    <Route path='/' exact component={Home} />
-                    <Route path='/userboard' component={UsersBoard} />
-                    <Route path='/new' component={NewQuestion} />
-                    <Route path='/question/:id' render={() => (
-                      <Question
-                        id={(window.location.href).split("/").pop()}
-                      />
-                    )} />
-                    <Route path='/result/:id' render={() => (
-                      <Result
-                        id={(window.location.href).split("/").pop()}
-                      />
-                    )} />
+                    <Switch>
+                      <Route path='/' exact component={Home} />
+                      <Route path='/leaderboard' component={LeaderBoard} />
+                      <Route path='/add' component={AddQuestion} />
+                      <Route path='/question/:id' render={() => (
+                        <Question
+                          id={(window.location.href).split("/").pop()}
+                        />
+                      )} />
+                      <Route path='/result/:id' render={() => (
+                        <Result
+                          id={(window.location.href).split("/").pop()}
+                        />
+                      )} />
+                      <Route component={NoPage404} />
+                    </Switch>
                   </Col>
                 </Row>
               </Fragment>)
               :
               (<Fragment>
-                <Route path='/' component={SignIn} />
+                <Route component={SignIn} />
               </Fragment>))
             :
             ("")

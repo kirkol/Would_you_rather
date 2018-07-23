@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import User from './User'
 import { connect } from 'react-redux'
 
-class UsersBoard extends Component {
+class LeaderBoard extends Component {
   render() {
     const {users} = this.props
     const usersIdRank = Object.keys(users)
@@ -26,4 +26,4 @@ function mapStateToProps({users}){
   }
 }
 
-export default connect(mapStateToProps)(UsersBoard)
+export default connect(mapStateToProps)(LeaderBoard)

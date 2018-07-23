@@ -24,6 +24,7 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, reducer)
 const store = createStore(persistedReducer, middleware);
 const persistor = persistStore(store);
+// persistor.purge() - UZYC TEGO POZNIEJ - czysci store zapisany przez przegladarke do zera!
 
 // store to nasz glowny store calej apki - tam przechowywane sa stany wszystkich komponentow
 // Provider to komponent z biblioteki Reduxa
