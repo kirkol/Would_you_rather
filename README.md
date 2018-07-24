@@ -2,6 +2,9 @@
 // If you'd like to find some tip or you'd like to see
 // how does basic React-Redux app look like - here you are
 
+// how it looks like?
+// see: https://eloquent-tesla-e8a448.netlify.com/
+
 // to run:
 // open your terminal in the project folder (cd path_of_this_project)
 // yarn install (or npm install)
