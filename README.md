@@ -2,6 +2,11 @@
 // If you'd like to find some tip or you'd like to see
 // how does basic React-Redux app look like - here you are
 
+// to run:
+// open your terminal in the project folder (cd path_of_this_project)
+// yarn install (or npm install)
+// yarn start (or npm start)
+
 // tl dr below
 
 # Would You Rather Project
