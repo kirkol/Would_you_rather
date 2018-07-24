@@ -1,47 +1,42 @@
 import React, { Component } from 'react'
 import QuestionsUnanswered from './QuestionsUnanswered';
 import QuestionsAnswered from './QuestionsAnswered';
+import { toggleTab } from '../actions/tab';
+import { connect } from 'react-redux'
 
 class Home extends Component {
 
-  state = {
-    tab: "unanswered"
-  }
-
-  handleClick = (tabName) => {
-    this.setState(() => ({
-      tab: tabName
-    }))
+  handleClick = (tab) => {
+    this.props.dispatch(toggleTab(tab))
   }
 
   render() {
+    const {tab} = this.props
     return (
-      this.state.tab === "unanswered" ? 
-      (<div>
+      <div>
         <ul className="nav nav-tabs">
           <li className="nav-item">
-            <p onClick={(e) => this.handleClick("unanswered")} className="nav-link active" style={{ scolor: '#595959' }}>Unanswered questions</p>
+            <p onClick={(e) => this.handleClick("unanswered")} className={tab==="unanswered" ? "nav-link active" : "nav-link"} style={{ scolor: '#595959' }}>Unanswered questions</p>
           </li>
           <li className="nav-item">
-            <p onClick={(e) => this.handleClick("answered")} className="nav-link" style={{ color: '#595959' }}>Answered questions</p>
+            <p onClick={(e) => this.handleClick("answered")} className={tab==="answered" ? "nav-link active" : "nav-link"} style={{ color: '#595959' }}>Answered questions</p>
           </li>
         </ul>
-       <QuestionsUnanswered/>
-      </div>)
-      :
-      (<div>
-        <ul className="nav nav-tabs">
-          <li className="nav-item">
-            <p onClick={(e) => this.handleClick("unanswered")} className="nav-link" style={{ scolor: '#595959' }}>Unanswered questions</p>
-          </li>
-          <li className="nav-item">
-            <p onClick={(e) => this.handleClick("answered")} className="nav-link active" style={{ color: '#595959' }}>Answered questions</p>
-          </li>
-        </ul>
-        <QuestionsAnswered/>
-      </div>)
+        {tab === "unanswered"
+        ?
+        (<QuestionsUnanswered />)
+        :
+        (<QuestionsAnswered />)}
+      </div>
     )
+
   }
 }
 
-export default Home
+function mapStateToProps({ tab }) {
+  return {
+    tab
+  }
+}
+
+export default connect(mapStateToProps)(Home)

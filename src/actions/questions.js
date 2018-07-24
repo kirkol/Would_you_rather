@@ -28,7 +28,7 @@ export function handleAnswerQuestion({ authedUser, qid, answer }){
     return _saveQuestionAnswer({ authedUser, qid, answer })
     .then(() => {
       dispatch(answerQuestion({ authedUser, qid, answer }))
-      dispatch(UserUpdate2({ authedUser, qid, answer }))
+      dispatch(UserUpdate2({ authedUser, qid, answer })) // this function shouldn't be here, see comment on top
     })
   }
 }

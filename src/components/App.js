@@ -18,12 +18,12 @@ import {
 
 class App extends Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.dispatch(handleInitialData())
   }
 
   render() {
-    console.log(this.props)
+    
     return (
       <Router>
         <Fragment>
@@ -39,16 +39,18 @@ class App extends Component {
                       <Route path='/' exact component={Home} />
                       <Route path='/leaderboard' component={LeaderBoard} />
                       <Route path='/add' component={AddQuestion} />
-                      <Route path='/question/:id' render={() => (
+                      {this.props.tab === "unanswered" ?
+                      (<Route path='/question/:id' render={() => (
                         <Question
                           id={(window.location.href).split("/").pop()}
                         />
-                      )} />
-                      <Route path='/result/:id' render={() => (
+                      )} />)
+                      :
+                      (<Route path='/question/:id' render={() => (
                         <Result
                           id={(window.location.href).split("/").pop()}
                         />
-                      )} />
+                      )} />)}
                       <Route component={NoPage404} />
                     </Switch>
                   </Col>
@@ -72,8 +74,9 @@ class App extends Component {
 // jesli wystapi akcja, ktora zmieni authedUser w glownym Storze, to kopniety w dupsko zostanie tez
 // komponent App - nastapi jego przerenderowanie (jak po setState)
 
-function mapStateToProps({ authedUser, loadingBar }) {
+function mapStateToProps({ authedUser, loadingBar, tab }) {
   return {
+    tab,
     authedUser,
     loading: loadingBar.default
   }

@@ -6,6 +6,7 @@ import Avatar from 'react-avatar'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import {handleAnswerQuestion} from '../actions/questions'
+import { toggleTab } from '../actions/tab';
 
 class Question extends Component {
 
@@ -17,7 +18,8 @@ class Question extends Component {
       alert("You have to choose your answer first :)")
     }else{
       this.props.dispatch(handleAnswerQuestion({authedUser:authedUser, qid:question.id, answer:answer}))
-      this.props.history.push(`/result/${this.props.id}`)
+      this.props.dispatch(toggleTab("answered"))
+      this.props.history.push(`/question/${this.props.id}`)
     }
   }
 

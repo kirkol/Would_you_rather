@@ -9,7 +9,7 @@ class QuestionsAnswered extends Component {
     return (
       <div>
         {this.props.questionsIds.map((id) => (
-          <li key={id}>
+          <li key={id} style={{listStyleType: "none"}}>
             <QuestionPreview 
             id={id}
             view={"result"}/>

@@ -7,10 +7,10 @@
 
 //UWAGA: w reducerze "state" oznacza tylko FRAGMENT store'a Reduxowego (tu: tylko questions), nie caly Store!
 
-import {RECEIVE_QUESTIONS, ADD_QUESTION, ANSWER_QUESTION} from '../actions/questions'
+import { RECEIVE_QUESTIONS, ADD_QUESTION, ANSWER_QUESTION} from '../actions/questions'
 
-export default function questions (state = {}, action){
-  switch(action.type){
+export default function questions(state = {}, action) {
+  switch (action.type) {
     case RECEIVE_QUESTIONS:
       return {
         ...state,
@@ -19,14 +19,14 @@ export default function questions (state = {}, action){
     case ADD_QUESTION:
       return {
         ...state,
-        [action.question.id]: action.question 
+        [action.question.id]: action.question
       }
     case ANSWER_QUESTION:
       return {
         ...state,
         [action.qid]: {
           ...state[action.qid],
-          [action.answer]:{
+          [action.answer]: {
             ...state[action.qid][action.answer],
             votes: state[action.qid][action.answer].votes.concat(action.authedUser)
           }
