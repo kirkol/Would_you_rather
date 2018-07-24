@@ -40,13 +40,13 @@ class App extends Component {
                       <Route path='/leaderboard' component={LeaderBoard} />
                       <Route path='/add' component={AddQuestion} />
                       {this.props.tab === "unanswered" ?
-                      (<Route path='/question/:id' render={() => (
+                      (<Route path='/questions/:question_id' render={() => (
                         <Question
                           id={(window.location.href).split("/").pop()}
                         />
                       )} />)
                       :
-                      (<Route path='/question/:id' render={() => (
+                      (<Route path='/questions/:question_id' render={() => (
                         <Result
                           id={(window.location.href).split("/").pop()}
                         />

@@ -19,7 +19,7 @@ class Question extends Component {
     }else{
       this.props.dispatch(handleAnswerQuestion({authedUser:authedUser, qid:question.id, answer:answer}))
       this.props.dispatch(toggleTab("answered"))
-      this.props.history.push(`/question/${this.props.id}`)
+      this.props.history.push(`/questions/${this.props.id}`)
     }
   }
 

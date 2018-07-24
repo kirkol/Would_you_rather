@@ -16,10 +16,16 @@ class Home extends Component {
       <div>
         <ul className="nav nav-tabs">
           <li className="nav-item">
-            <p onClick={(e) => this.handleClick("unanswered")} className={tab==="unanswered" ? "nav-link active" : "nav-link"} style={{ scolor: '#595959' }}>Unanswered questions</p>
+            <p 
+            onClick={(e) => this.handleClick("unanswered")} 
+            className={tab==="unanswered" ? "nav-link active" : "nav-link"} 
+            style={{ scolor: '#595959' }}>Unanswered questions</p>
           </li>
           <li className="nav-item">
-            <p onClick={(e) => this.handleClick("answered")} className={tab==="answered" ? "nav-link active" : "nav-link"} style={{ color: '#595959' }}>Answered questions</p>
+            <p 
+            onClick={(e) => this.handleClick("answered")} 
+            className={tab==="answered" ? "nav-link active" : "nav-link"} 
+            style={{ color: '#595959' }}>Answered questions</p>
           </li>
         </ul>
         {tab === "unanswered"

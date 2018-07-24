@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import {Form, FormGroup, Input, Button} from 'reactstrap'
-import {connect} from 'react-redux'
+import { Form, FormGroup, Input, Button } from 'reactstrap'
+import { connect } from 'react-redux'
 import { handleAddQuestion } from '../actions/questions';
 
 class AddQuestion extends Component {
@@ -12,9 +12,9 @@ class AddQuestion extends Component {
       optionOneText: opt1,
       optionTwoText: opt2
     }
-    if(opt1==false || opt2==false){
+    if (opt1 == false || opt2 == false) {
       alert("both options need to be filled :)")
-    }else{
+    } else {
       this.props.dispatch(handleAddQuestion(question))
       this.props.history.push("/")
     }
@@ -26,25 +26,39 @@ class AddQuestion extends Component {
     let opt2 = ""
 
     return (
-      <Form style={{marginTop:'20px'}}>
+      <Form style={{ marginTop: '20px' }}>
         <h2>Create new question</h2>
         <hr />
         <FormGroup>
           <h4>Would you rather</h4>
-          <Input onChange={(e) => opt1 = e.target.value} type="textarea" name="text" id="exampleText" placeholder="Option1..."/>
+          <Input
+            onChange={(e) => opt1 = e.target.value}
+            type="textarea"
+            name="text"
+            id="exampleText"
+            placeholder="Option1..." />
         </FormGroup>
-        <p style={{textAlign: 'center'}}>--- OR ---</p>
+        <p style={{ textAlign: 'center' }}>--- OR ---</p>
         <FormGroup>
-          <Input onChange={(e) => opt2 = e.target.value} type="textarea" name="text" id="exampleText" placeholder="Option2..."/>
+          <Input
+            onChange={(e) => opt2 = e.target.value}
+            type="textarea"
+            name="text"
+            id="exampleText"
+            placeholder="Option2..." />
         </FormGroup>
-        <Button onClick={(e) => this.handleClick(e, opt1, opt2)} style={{display: 'block', marginLeft: 'auto', marginRight: 'auto', width: '40%'}}>ADD NEW QUESTION</Button>
+        <Button
+          onClick={(e) => this.handleClick(e, opt1, opt2)}
+          style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto', width: '40%' }}>
+          ADD NEW QUESTION
+        </Button>
       </Form>
     )
   }
 }
 
-function mapStateToProps({authedUser}){
-  return{
+function mapStateToProps({ authedUser }) {
+  return {
     authedUser
   }
 }

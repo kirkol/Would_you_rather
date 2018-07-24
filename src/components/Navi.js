@@ -20,7 +20,7 @@ class Navi extends Component {
     e.preventDefault()
     const { dispatch } = this.props
     dispatch(setAuthedUser(null))
-    
+
     this.props.history.push("/")
   }
 
@@ -38,7 +38,11 @@ class Navi extends Component {
             </div>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <Avatar name="Kuba" size="40" round={true} src={users[userId].avatarURL} />
+                <Avatar
+                  name="Kuba"
+                  size="40"
+                  round={true}
+                  src={users[userId].avatarURL} />
               </NavItem>
               <NavItem>
                 <NavLink disabled>Hello {users[userId].name}</NavLink>

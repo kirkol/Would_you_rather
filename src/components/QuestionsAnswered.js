@@ -10,9 +10,7 @@ class QuestionsAnswered extends Component {
       <div>
         {this.props.questionsIds.map((id) => (
           <li key={id} style={{listStyleType: "none"}}>
-            <QuestionPreview 
-            id={id}
-            view={"result"}/>
+            <QuestionPreview id={id} />
           </li>
         ))}
       </div>

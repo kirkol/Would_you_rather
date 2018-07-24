@@ -10,7 +10,7 @@ class QuestionPreview extends Component {
 
   handleClick = (e, id) => {
     e.preventDefault();
-      this.props.history.push(`/question/${id}`)
+      this.props.history.push(`/questions/${id}`)
   }
 
   render() {
