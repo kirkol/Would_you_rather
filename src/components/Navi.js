@@ -13,6 +13,7 @@ import {
   Button
 } from 'reactstrap';
 import { setAuthedUser } from '../actions/authedUser'
+import { toggleTab } from '../actions/tab';
 
 class Navi extends Component {
 
@@ -20,7 +21,7 @@ class Navi extends Component {
     e.preventDefault()
     const { dispatch } = this.props
     dispatch(setAuthedUser(null))
-
+    dispatch(toggleTab("unanswered"))
     this.props.history.push("/")
   }
 

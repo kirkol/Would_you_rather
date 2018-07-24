@@ -5,6 +5,7 @@ import {
 import Avatar from 'react-avatar'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import { toggleTab } from '../actions/tab';
 
 class Result extends Component {
   handleClick = (e) => {

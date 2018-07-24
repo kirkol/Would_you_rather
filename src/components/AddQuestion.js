@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Form, FormGroup, Input, Button } from 'reactstrap'
 import { connect } from 'react-redux'
 import { handleAddQuestion } from '../actions/questions';
+import { toggleTab } from '../actions/tab';
 
 class AddQuestion extends Component {
 
@@ -16,6 +17,7 @@ class AddQuestion extends Component {
       alert("both options need to be filled :)")
     } else {
       this.props.dispatch(handleAddQuestion(question))
+      this.props.dispatch(toggleTab("unanswered"))
       this.props.history.push("/")
     }
   }
