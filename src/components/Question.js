@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import {handleAnswerQuestion} from '../actions/questions'
 import { toggleTab } from '../actions/tab';
+import NoPage404 from './NoPage404';
 
 class Question extends Component {
 
@@ -25,6 +26,13 @@ class Question extends Component {
 
   render() {
     const { question, user } = this.props
+    
+    if(user===null){
+      return(
+        <NoPage404 />
+      )
+    }
+
     let answer = ""
     return (
       <div>
@@ -73,7 +81,7 @@ function mapStateToProps({ questions, users, authedUser }, { id }) {
   return {
     authedUser,
     question: questions[id],
-    user: users[questions[id].author]
+    user: questions[id] ? users[questions[id].author] : null
   }
 }
 

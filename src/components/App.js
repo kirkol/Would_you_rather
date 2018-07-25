@@ -37,8 +37,8 @@ class App extends Component {
                   <Col sm="12" md={{ size: 6, offset: 3 }}>
                     <Switch>
                       <Route path='/' exact component={Home} />
-                      <Route path='/leaderboard' component={LeaderBoard} />
-                      <Route path='/add' component={AddQuestion} />
+                      <Route path='/leaderboard' exac component={LeaderBoard} />
+                      <Route path='/add' exac component={AddQuestion} />
                       {this.props.tab === "unanswered" ?
                       (<Route path='/questions/:question_id' render={() => (
                         <Question

@@ -5,7 +5,7 @@ import {
 import Avatar from 'react-avatar'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { toggleTab } from '../actions/tab';
+import NoPage404 from './NoPage404';
 
 class Result extends Component {
   handleClick = (e) => {
@@ -15,6 +15,13 @@ class Result extends Component {
 
   render() {
     const { user, question, authedUser } = this.props
+    
+    if(user===null){
+      return(
+        <NoPage404 />
+      )
+    }
+
     const votes1 = question.optionOne["votes"].length
     const votes2 = question.optionTwo["votes"].length
 
@@ -60,7 +67,7 @@ function mapStateToProps({ questions, users, authedUser }, { id }) {
   return {
     authedUser,
     question: questions[id],
-    user: users[questions[id].author]
+    user: questions[id] ? users[questions[id].author] : null
   }
 }
 
